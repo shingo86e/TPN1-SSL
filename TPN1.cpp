@@ -46,6 +46,11 @@ Impedir el ingreso de ISBN repetidos.
 #include <stdlib.h>
 #include <string.h>
 
+struct FECHA
+{
+	int dia,mes,anio;
+};
+
 struct registro
 {
 	int prefijoInternacional;
@@ -59,16 +64,17 @@ struct registro
 	FECHA fecha; 
 	float precio;
 	int cantidad;
-}
-
-struct FECHA
-{
-	int dia,mes,anio;
-}
+};
 
 bool validarPrefijoInternacional(registro ISBN)
 {
 	if(ISBN.prefijoInternacional== 978 || ISBN.prefijoInternacional== 979)return true;
+	else return false;
+}
+
+bool validarIdentificadorGrupo(registro ISBN)
+{
+	if(ISBN.identificadorGrupo>=0 && ISBN.identificadorGrupo<=99999)return true;
 	else return false;
 }
 
@@ -99,6 +105,14 @@ main()
 		scanf("%d",&ISBN.prefijoInternacional);
 		valido=validarPrefijoInternacional(ISBN);
 		if (valido == false)printf("El prefijo ingresado no es valido ingrese uno correcto...\n\n");
+		
+	}while(valido == false);
+	do
+	{
+		printf("Ingrese Identificador de grupo o Grupo de registro, debe tener entre 1 a 5 digitos\n");
+		scanf("%d",&ISBN.identificadorGrupo);
+		valido=validarIdentificadorGrupo(ISBN);
+		if (valido == false)printf("El Identificador de grupo o Grupo de registro no es valido ingrese uno correcto...\n\n");
 		
 	}while(valido == false);
 	
