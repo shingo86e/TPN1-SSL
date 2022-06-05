@@ -78,6 +78,12 @@ bool validarIdentificadorGrupo(registro ISBN)
 	else return false;
 }
 
+bool validarPrefijoEditor(registro ISBN)
+{
+	if(ISBN.prefijoEditor>=0 && ISBN.prefijoEditor<=9999999)return true;
+	else return false;
+}
+
 main()
 {
 	registro ISBN;
@@ -115,7 +121,14 @@ main()
 		if (valido == false)printf("El Identificador de grupo o Grupo de registro no es valido ingrese uno correcto...\n\n");
 		
 	}while(valido == false);
-	
+	do
+	{
+		printf("Ingrese Prefijo de editor o de agente editor, debe tener entre 1 a 7 digitos\n");
+		scanf("%d",&ISBN.prefijoEditor);
+		valido=validarPrefijoEditor(ISBN);
+		if (valido == false)printf("El Identificador de grupo o Grupo de registro no es valido ingrese uno correcto...\n\n");
+		
+	}while(valido == false);
 	
 	
 	
